@@ -16,8 +16,8 @@ module RSpecXmlMatchers
     
     def contains_xpath?
       xpath_result = @xml_document.xpath(@xpath)
-      block_result = block_given? ? yield(xpath_result) : true
-      !xpath_result.nil? && block_result
+      block_result = !xpath_result.empty? && block_given? ? yield(xpath_result) : true
+      !xpath_result.empty? && block_result
     end
     
     def contains_xpath_with_text_value?(text_value)
