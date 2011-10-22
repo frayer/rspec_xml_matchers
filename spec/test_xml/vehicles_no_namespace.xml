@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<vehicles>
+	<vehicle>
+		<make>BMW</make>
+		<model>335is</model>
+		<year>2011</year>
+	</vehicle>
+	<vehicle>
+		<make>BMW</make>
+		<model>M3</model>
+		<year>2006</year>
+	</vehicle>
+	<vehicle>
+		<make>Audi</make>
+		<model>S5</model>
+		<year>2011</year>
+	</vehicle>
+</vehicles>
