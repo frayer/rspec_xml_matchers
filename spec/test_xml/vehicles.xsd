@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:test:vehicles" xmlns="urn:test:vehicles" targetNamespace="urn:test:vehicles" elementFormDefault="qualified">
+	<xs:element name="vehicles" type="tns:vehicles"/>
+	
+	<xs:complexType name="vehicles">
+		<xs:sequence>
+			<xs:element name="vehicle" type="tns:vehicle" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="vehicle">
+		<xs:sequence>
+			<xs:element name="make" type="xs:string"/>
+			<xs:element name="model" type="xs:string"/>
+			<xs:element name="year" type="xs:integer"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
