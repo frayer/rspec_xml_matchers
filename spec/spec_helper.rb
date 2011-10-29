@@ -1,1 +1,2 @@
 require 'support/matchers/xml_contain_xpath_helper'
+require 'support/matchers/xml_validate_against_schema_helper'

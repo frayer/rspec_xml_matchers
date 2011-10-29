@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<v:vehicles xmlns:v="urn:test:vehicles">
+	<v:vehicle>
+		<v:make>BMW</v:make>
+		<v:year>2011</v:year>
+		<v:model>335is</v:model>
+	</v:vehicle>
+	<v:vehicle>
+		<v:make>BMW</v:make>
+		<v:year>2006</v:year>
+		<v:model>M3</v:model>
+	</v:vehicle>
+	<v:vehicle>
+		<v:make>Audi</v:make>
+		<v:year>2011</v:year>
+		<v:model>S5</v:model>
+	</v:vehicle>
+</v:vehicles>
