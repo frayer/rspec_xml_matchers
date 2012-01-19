@@ -9,7 +9,8 @@ RSpec::Matchers.define :contain_xpath do |xpath_expression, namespace_map|
   end
   
   match do |actual|
-    @matcher = RSpecXmlMatchers::XPathMatcherHelper.new(actual, xpath_expression)
+    namespaces = namespace_map.nil? ? {} : namespace_map
+    @matcher = RSpecXmlMatchers::XPathMatcherHelper.new(actual, xpath_expression, namespaces)
     if @opts[:text_value]
       @matcher.contains_xpath_with_text_value?(@opts[:text_value])
     else

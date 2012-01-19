@@ -4,9 +4,10 @@ module RSpecXmlMatchers
   class XPathMatcherHelper
     attr_reader :text_value_found
     
-    def initialize(xml, xpath)
+    def initialize(xml, xpath, namespaces={})
       @xml = xml
       @xpath = xpath
+      @namespaces = namespaces
       if @xml.instance_of? String
         @xml_document = Nokogiri::XML(@xml)
       elsif @xml.kind_of? Nokogiri::XML::Node
@@ -15,7 +16,7 @@ module RSpecXmlMatchers
     end
     
     def contains_xpath?
-      xpath_result = @xml_document.xpath(@xpath)
+      xpath_result = @xml_document.xpath(@xpath, @namespaces)
       block_result = !xpath_result.empty? && block_given? ? yield(xpath_result) : true
       !xpath_result.empty? && block_result
     end
