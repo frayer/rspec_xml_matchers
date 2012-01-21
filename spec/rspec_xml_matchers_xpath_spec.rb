@@ -73,4 +73,12 @@ describe "XPath RSpec Matchers" do
     doc1.should_not contain_xpath("/vehicles/make").with_text_value("BMW")
   end
   
+  it "should not find XPath expressions where the text value does not exist in the XML String" do
+    xml1.should_not contain_xpath("/vehicles/vehicle[1]/make").with_text_value("wrong value")
+  end
+  
+  it "should not find XPath expressions where the text value does not exist in the Nokogiri Document" do
+    doc1.should_not contain_xpath("/vehicles/vehicle[1]/make").with_text_value("wrong value")
+  end
+  
 end

@@ -7,6 +7,7 @@ describe "XPath with Namespace Prefixes RSpec Matchers" do
   xml1 = File.new("spec/test_xml/vehicles_namespace.xml").read
   doc1 = Nokogiri::XML(xml1)
   namespaces = { 'x' => 'urn:test:vehicles' }
+
   ##
   ## Positive Testing
   ##
@@ -58,19 +59,27 @@ describe "XPath with Namespace Prefixes RSpec Matchers" do
   ##
   
   it "should not find XPath expressions which do not exist in the XML String" do
-    xml1.should_not contain_xpath("/vehicles/model")
+    xml1.should_not contain_xpath("/x:vehicles/x:model", namespaces)
   end
   
   it "should not find XPath expressions with text values which do not exist in the XML String" do
-    xml1.should_not contain_xpath("/vehicles/model").with_text_value("BMW")
+    xml1.should_not contain_xpath("/x:vehicles/x:model", namespaces).with_text_value("BMW")
   end
   
   it "should not find XPath expressions which do not exist in the Nokogiri Document" do
-    doc1.should_not contain_xpath("/vehicles/make")
+    doc1.should_not contain_xpath("/x:vehicles/x:make", namespaces)
   end
   
   it "should not find XPath expressions with text values which do not exist in the Nokogiri Document" do
-    doc1.should_not contain_xpath("/vehicles/make").with_text_value("BMW")
+    doc1.should_not contain_xpath("/x:vehicles/x:make", namespaces).with_text_value("BMW")
+  end
+  
+  it "should not find XPath expressions where the text value does not exist in the XML String" do
+    xml1.should_not contain_xpath("/x:vehicles/x:vehicle[1]/x:make", namespaces).with_text_value("wrong value")
+  end
+  
+  it "should not find XPath expressions where the text value does not exist in the Nokogiri Document" do
+    doc1.should_not contain_xpath("/x:vehicles/x:vehicle[1]/x:make", namespaces).with_text_value("wrong value")
   end
   
 end
