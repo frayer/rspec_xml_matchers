@@ -1,31 +1,32 @@
 require 'nokogiri'
 require 'rspec_xml_matchers'
 
-describe RSpecXmlMatchers, "#contains_xpath?" do
+describe RSpecXmlMatchers::SchemaMatcherHelper do
+  
   before(:all) do
     @test_xml_string = File.new('test_xml/vehicles_no_namespace.xml').read
-    @test_xml_doc = Nokogiri::XML(@test_xml_string)
+    @test_xml_ns_string = File.new('test_xml/vehicles_namespace.xml').read
+    @test_xml_ns_invalid_string = File.new('test_xml/vehicles_namespace_invalid.xml').read
     
-    @valid_xpaths = ["/vehicles/vehicle"]
-    @valid_xpaths << "/vehicles/vehicle[2]"
-    @valid_xpaths << "/vehicles/vehicle[model[text()='M3']]"
-    @valid_xpaths << "/vehicles/vehicle[model[text()='M3']]"
+    @test_xsd_string = File.new('test_xml/vehicles.xsd').read
+    @test_xsd_schema = Nokogiri::XML::Schema(@test_xsd_string)
     
-    @invalid_xpaths = ["/vehicle"]
-    @invalid_xpaths << "/vehicles/vehicle[model[text()='S4']]"
+    @helper = RSpecXmlMatchers::SchemaMatcherHelper.new(@test_xsd_string)
   end
-
-  it "contains expected XPath expressions" do
-    @valid_xpaths.each do |xpath|
-      helper = RSpecXmlMatchers::XPathMatcherHelper.new(@test_xml_string, xpath)
-      expect(helper.contains_xpath?).to be_true
-    end
+  
+  it "should return an empty Array when there are no schema validate errors" do
+    results = @helper.validate(@test_xml_ns_string)
+    results.should be_empty
   end
-
-  it "does not contain unexpected XPath expressions" do
-    @invalid_xpaths.each do |xpath|
-      helper = RSpecXmlMatchers::XPathMatcherHelper.new(@test_xml_string, xpath)
-      expect(helper.contains_xpath?).to be_false
-    end
+  
+  it "should return at least one schema validation error when validation fails" do
+    results = @helper.validate(@test_xml_string)
+    results.should have_at_least(1).error
   end
+  
+  it "should return 3 schema validation errors" do
+    results = @helper.validate(@test_xml_ns_invalid_string)
+    results.should have_at_least(3).errors
+  end
+  
 end
