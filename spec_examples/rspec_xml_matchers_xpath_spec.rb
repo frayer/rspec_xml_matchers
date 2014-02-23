@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe "XPath RSpec Matchers" do
 
-  xml1 = File.new("spec/test_xml/vehicles_no_namespace.xml").read
+  xml1 = File.new("test_xml/vehicles_no_namespace.xml").read
   doc1 = Nokogiri::XML(xml1)
   
   ##

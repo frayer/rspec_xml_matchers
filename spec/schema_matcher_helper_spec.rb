@@ -5,11 +5,11 @@ require 'rspec_xml_matchers'
 describe RSpecXmlMatchers::SchemaMatcherHelper do
   
   before(:all) do
-    @test_xml_string = File.new('spec/test_xml/vehicles_no_namespace.xml').read
-    @test_xml_ns_string = File.new('spec/test_xml/vehicles_namespace.xml').read
-    @test_xml_ns_invalid_string = File.new('spec/test_xml/vehicles_namespace_invalid.xml').read
+    @test_xml_string = File.new('test_xml/vehicles_no_namespace.xml').read
+    @test_xml_ns_string = File.new('test_xml/vehicles_namespace.xml').read
+    @test_xml_ns_invalid_string = File.new('test_xml/vehicles_namespace_invalid.xml').read
     
-    @test_xsd_string = File.new('spec/test_xml/vehicles.xsd').read
+    @test_xsd_string = File.new('test_xml/vehicles.xsd').read
     @test_xsd_schema = Nokogiri::XML::Schema(@test_xsd_string)
     
     @helper = RSpecXmlMatchers::SchemaMatcherHelper.new(@test_xsd_string)
