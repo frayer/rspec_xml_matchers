@@ -5,7 +5,7 @@ Overview
 --------
 
 A collection of custom RSpec Matchers for testing XML. Currently it supports XPath and Schema
-Validation matchers, and will be expanded to support XML equivalence testing. Look in the "spec"
+Validation matchers, and will be expanded to support XML equivalence testing. Look in the "spec_examples"
 directory for more examples, but the following is what you can expect to find.
 
 ### XPath Matchers (see "spec\_examples/rspec\_xml\_matchers\_xpath\_spec.rb") ###
