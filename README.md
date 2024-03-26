@@ -1,8 +1,12 @@
-rspec\_xml\_matchers
-====================
+# rspec\_xml\_matchers
 
-Overview
---------
+## Archive Notice
+
+I archived this repository on March 26, 2024 while performing repository
+cleanup. Feel free to contact me if anyone decides to fork and carry this
+forward and I'd be happy to give a shoutout in this README.
+
+## Overview
 
 A collection of custom RSpec Matchers for testing XML. Currently it supports XPath and Schema
 Validation matchers, and will be expanded to support XML equivalence testing. Look in the "spec_examples"
